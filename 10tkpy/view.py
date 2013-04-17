@@ -44,17 +44,17 @@ class DiceRollWidget(Frame):
 
 
     def set_buttons(self):
-        self.oneHoldButton = Button(self, text="Hold", font="Times 14", command=self.hold_one)
+        self.oneHoldButton = Button(self, text="Not Held", font="Times 14", command=self.hold_one)
         self.oneHoldButton.grid(row=2, column=2)
-        self.twoHoldButton = Button(self, text="Hold", font="Times 14", command=self.hold_two)
+        self.twoHoldButton = Button(self, text="Not Held", font="Times 14", command=self.hold_two)
         self.twoHoldButton.grid(row=3, column=2)
-        self.threeHoldButton = Button(self, text="Hold", font="Times 14", command=self.hold_three)
+        self.threeHoldButton = Button(self, text="Not Held", font="Times 14", command=self.hold_three)
         self.threeHoldButton.grid(row=4, column=2)
-        self.fourHoldButton = Button(self, text="Hold", font="Times 14", command=self.hold_four)
+        self.fourHoldButton = Button(self, text="Not Held", font="Times 14", command=self.hold_four)
         self.fourHoldButton.grid(row=5, column=2)
-        self.fiveHoldButton = Button(self, text="Hold", font="Times 14", command=self.hold_five)
+        self.fiveHoldButton = Button(self, text="Not Held", font="Times 14", command=self.hold_five)
         self.fiveHoldButton.grid(row=6, column=2)
-        self.sixHoldButton = Button(self, text="Hold", font="Times 14", command=self.hold_six)
+        self.sixHoldButton = Button(self, text="Not Held", font="Times 14", command=self.hold_six)
         self.sixHoldButton.grid(row=7, column=2)
 
     def inc_held(self, number, num=1):
@@ -65,35 +65,71 @@ class DiceRollWidget(Frame):
         self._reset_held_label()
 
     def hold_one(self):
-        self.oneHoldButton.configure(text="Held")
-        self.inc_held('one')
-        self.heldDice.append('one')
+        if self.oneHoldButton['text'] == "Not Held":
+            self.oneHoldButton.configure(text="   Held   ")
+            self.inc_held('one')
+            self.heldDice.append('one')
+        else:
+            self.heldNumber -= 1
+            self._reset_held_label()
+            self.heldDice.remove('one')
+            self.oneHoldButton.configure(text="Not Held")
 
     def hold_two(self):
-        self.twoHoldButton.configure(text="Held")
-        self.inc_held('two')
-        self.heldDice.append('two')
+        if self.twoHoldButton['text'] == "Not Held":
+            self.twoHoldButton.configure(text="   Held   ")
+            self.inc_held('two')
+            self.heldDice.append('two')
+        else:
+            self.heldNumber -= 1
+            self._reset_held_label()
+            self.heldDice.remove('two')
+            self.twoHoldButton.configure(text="Not Held")
 
     def hold_three(self):
-        self.threeHoldButton.configure(text="Held")
-        self.inc_held('three')
-        self.heldDice.append('three')
+        if self.threeHoldButton['text'] == "Not Held":
+            self.threeHoldButton.configure(text="   Held   ")
+            self.inc_held('three')
+            self.heldDice.append('three')
+        else:
+            self.heldNumber -= 1
+            self._reset_held_label()
+            self.heldDice.remove('three')
+            self.threeHoldButton.configure(text="Not Held")
+
 
     def hold_four(self):
-        self.fourHoldButton.configure(text="Held")
-        self.inc_held('four')
-        self.heldDice.append('four')
+        if self.fourHoldButton['text'] == 'Not Held':
+            self.fourHoldButton.configure(text="   Held   ")
+            self.inc_held('four')
+            self.heldDice.append('four')
+        else:
+            self.heldNumber -= 1
+            self._reset_held_label()
+            self.heldDice.remove('four')
+            self.fourHoldButton.configure(text="Not Held")
 
     def hold_five(self):
-        self.fiveHoldButton.configure(text="Held")
-        self.inc_held('five')
-        self.heldDice.append('five')
-
+        if self.fiveHoldButton["text"] == "Not Held":
+            self.fiveHoldButton.configure(text="   Held   ")
+            self.inc_held('five')
+            self.heldDice.append('five')
+        else:
+            self.heldNumber -= 1
+            self._reset_held_label()
+            self.heldDice.remove('five')
+            self.fiveHoldButton.configure(text="Not Held")
 
     def hold_six(self):
-        self.sixHoldButton.configure(text="Held")
-        self.inc_held('six')
-        self.heldDice.append('six')
+        if self.sixHoldButton['text'] == 'Not Held':
+            self.sixHoldButton.configure(text="   Held   ")
+            self.inc_held('six')
+            self.heldDice.append('six')
+        else:
+            self.heldNumber -= 1
+            self._reset_held_label()
+            self.heldDice.remove('six')
+            self.sixHoldButton.configure(text="Not Held")
 
 
     def _reset_held_num(self):
